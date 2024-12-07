@@ -1,7 +1,11 @@
 package com.eyup.mail.conroller;
 
-import com.eyup.mail.entity.User;
+import com.eyup.mail.dto.AuthenticationResponseDTO;
+import com.eyup.mail.dto.LoginRequestDTO;
+import com.eyup.mail.dto.RegisterRequestDTO;
 import com.eyup.mail.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,11 +22,21 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody User User) {
+    @PostMapping("/signup")
+    public ResponseEntity<String> loginUser(@RequestBody RegisterRequestDTO user) {
 
-        userService.registerUser(User);
+        userService.registerUser(user);
 
         return ResponseEntity.ok("Login successful, verification email sent!");
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<AuthenticationResponseDTO> login(@RequestBody LoginRequestDTO request) {
+        return ResponseEntity.ok(userService.authenticate(request));
+    }
+
+    @PostMapping("/refresh_token")
+    public ResponseEntity refreshToken(HttpServletRequest request, HttpServletResponse response) {
+        return userService.refreshToken(request, response);
     }
 }
