@@ -41,11 +41,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         return http
-                //.csrf(AbstractHttpConfigurer::disable)
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/user/login", "/user/signup", "/user/refresh_token","/error","/verify**","/h2-console/**").permitAll()
-                        //.requestMatchers("/admin_only/**").hasAuthority("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
