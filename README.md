@@ -1,4 +1,4 @@
-# Kullanıcı Kayıt 
+# Mail İle Kullanıcı Kayıt 
 
 Bu proje, Spring Boot ve Spring Security ile geliştirilmiş. Uygulama, kullanıcı uygulamaya kayıt olurken mail onay vermeden uygulamaya girmesi izin verilmiyor.
 
@@ -24,6 +24,7 @@ Bu proje, Spring Boot ve Spring Security ile geliştirilmiş. Uygulama, kullanı
 | `POST`       | `/user/register` | Yeni kullanıcı kaydı   |
 | `POST`       | `/user/login`    | Kullanıcı kimlik doğrulama |
 | `GET`        | `/verify**`      | Mail onay için kullanılır      |
+| `GET`        | `/hello`      | Hello World     |
 
 ## Postman
 - Kullanıcı Kayıt Olma
